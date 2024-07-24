@@ -1,5 +1,5 @@
-using EccGrpcSDK;
-using EccGrpcSDK.models;
+using EccSDK;
+using EccSDK.models;
 using Org.BouncyCastle.Math;
 
 namespace EccSdkUnitTest;

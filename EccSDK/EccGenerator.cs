@@ -1,10 +1,10 @@
-﻿using EccGrpcSDK.models;
+﻿using EccSDK.models;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Generators;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Security;
 
-namespace EccGrpcSDK;
+namespace EccSDK;
 
 public static class EccGenerator
 {

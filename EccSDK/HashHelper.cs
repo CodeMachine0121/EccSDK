@@ -2,7 +2,7 @@ using System.Text;
 using Org.BouncyCastle.Crypto.Digests;
 using Org.BouncyCastle.Math;
 
-namespace EccGrpcSDK;
+namespace EccSDK;
 
 public abstract class HashHelper
 {

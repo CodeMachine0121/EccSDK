@@ -1,8 +1,8 @@
-using EccGrpcSDK.models;
+using EccSDK.models;
 using Org.BouncyCastle.Math;
 using Org.BouncyCastle.Math.EC;
 
-namespace EccGrpcSDK;
+namespace EccSDK;
 
 public static class ChameleonHashHelper
 {

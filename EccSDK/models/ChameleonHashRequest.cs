@@ -1,6 +1,6 @@
 using Org.BouncyCastle.Math;
 
-namespace EccGrpcSDK.models;
+namespace EccSDK.models;
 
 public class ChameleonHashRequest
 {

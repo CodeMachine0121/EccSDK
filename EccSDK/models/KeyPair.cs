@@ -1,7 +1,7 @@
 using Org.BouncyCastle.Math;
 using Org.BouncyCastle.Math.EC;
 
-namespace EccGrpcSDK.models;
+namespace EccSDK.models;
 
 public class KeyPair
 {
