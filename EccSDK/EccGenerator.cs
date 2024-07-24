@@ -18,11 +18,13 @@ public class EccGenerator : IEccGenerator
         var privateKey = (ECPrivateKeyParameters) keyGen.Private;
         var publicKey = (ECPublicKeyParameters) keyGen.Public;
 
-        return new KeyPair()
+        var generateKeyPair = new KeyPair()
         {
             PublicKey = publicKey.Q, 
             PrivateKey = privateKey.D,
             BasePoint = publicKey.Parameters.G
         };
+        
+        return generateKeyPair;
     }
 }
