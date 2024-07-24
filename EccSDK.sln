@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EccSDK", "EccSDK\EccSDK.csproj", "{5EAC669B-2882-4A01-BC96-F39E04092834}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EccSdkUnitTest", "EccSdkUnitTest\EccSdkUnitTest.csproj", "{09C5648F-11F0-446C-B0EC-835BD965CB6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{5EAC669B-2882-4A01-BC96-F39E04092834}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EAC669B-2882-4A01-BC96-F39E04092834}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EAC669B-2882-4A01-BC96-F39E04092834}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09C5648F-11F0-446C-B0EC-835BD965CB6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09C5648F-11F0-446C-B0EC-835BD965CB6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09C5648F-11F0-446C-B0EC-835BD965CB6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09C5648F-11F0-446C-B0EC-835BD965CB6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

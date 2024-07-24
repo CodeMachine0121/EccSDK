@@ -6,9 +6,9 @@ using Org.BouncyCastle.Security;
 
 namespace EccGrpcSDK;
 
-public class EccGenerator : IEccGenerator
+public static class EccGenerator
 {
-    public KeyPair GenerateKeyPair(int keySize)
+    public static KeyPair GenerateKeyPair(int keySize)
     {
         var gen = new ECKeyPairGenerator("ECDSA");
         gen.Init(new KeyGenerationParameters(new SecureRandom(), keySize));
@@ -22,9 +22,11 @@ public class EccGenerator : IEccGenerator
         {
             PublicKey = publicKey.Q, 
             PrivateKey = privateKey.D,
-            BasePoint = publicKey.Parameters.G
+            BasePoint = publicKey.Parameters.G,
+            KeySize = keySize 
         };
         
         return generateKeyPair;
     }
+    
 }

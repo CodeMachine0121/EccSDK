@@ -4,7 +4,7 @@ using Org.BouncyCastle.Math.EC;
 
 namespace EccGrpcSDK;
 
-public class ChameleonHashHelper
+public static class ChameleonHashHelper
 {
     // Kn = public key
     // kn = private key
@@ -23,7 +23,7 @@ public class ChameleonHashHelper
         return GetChameleonHash(request).Equals(rightChameleonHash);
     }
 
-    private static ECPoint GetChameleonHash(ChameleonHashRequest request)
+    public static ECPoint GetChameleonHash(ChameleonHashRequest request)
     {
         // chameleonHash = [Kn x H(m)] + [P x sessionKey]
         var msgHash = HashHelper.Sha256(request.Message);
@@ -31,4 +31,5 @@ public class ChameleonHashHelper
         var chameleonHash = request.KeyPair.PublicKey.Multiply(msgHash).Add(rP).Normalize();
         return chameleonHash;
     }
+
 }
