@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EccSDK", "EccSDK\EccSDK.csproj", "{5EAC669B-2882-4A01-BC96-F39E04092834}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EccSdkUnitTests", "EccSdkUnitTests\EccSdkUnitTests.csproj", "{CEF5979A-D5C2-47B4-B9EE-80C1F9AF1838}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5EAC669B-2882-4A01-BC96-F39E04092834}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EAC669B-2882-4A01-BC96-F39E04092834}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EAC669B-2882-4A01-BC96-F39E04092834}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EAC669B-2882-4A01-BC96-F39E04092834}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEF5979A-D5C2-47B4-B9EE-80C1F9AF1838}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEF5979A-D5C2-47B4-B9EE-80C1F9AF1838}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEF5979A-D5C2-47B4-B9EE-80C1F9AF1838}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEF5979A-D5C2-47B4-B9EE-80C1F9AF1838}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
