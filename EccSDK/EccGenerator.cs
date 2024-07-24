@@ -22,6 +22,7 @@ public class EccGenerator : IEccGenerator
         {
             PublicKey = publicKey.Q, 
             PrivateKey = privateKey.D,
+            BasePoint = publicKey.Parameters.G
         };
     }
 }
