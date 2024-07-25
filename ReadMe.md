@@ -1,5 +1,6 @@
 # EccSDK 
-EccSDK is a library that provides a simple way to interact with Chameleon Hash based on the ECC API.
+- EccSDK is a library that provides a simple way to interact with Chameleon Hash based on the ECC API.
+- You can search this package in this [nuget page](https://www.nuget.org/packages/EccSDK)
 
 ## Usage
 ```csharp
