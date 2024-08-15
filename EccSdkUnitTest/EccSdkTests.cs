@@ -32,7 +32,7 @@ public class EccSdkTests
             Message = "Hello World",
             Order = _keyPair.PublicKey.Curve.Order,
             SessionKey = new BigInteger("1234567890"),
-            Signature = sign
+            Signature = sign.Value
         });
 
         var result = ChameleonHashHelper.Verify(new ChameleonHashRequest
@@ -40,8 +40,8 @@ public class EccSdkTests
             KeyPair = _keyPair,
             Message = "Hello World",
             Order = _keyPair.PublicKey.Curve.Order,
-            Signature = sign
-        }, chameleonHash);
+            Signature = sign.Value
+        }, chameleonHash.Value);
 
         Assert.That(result, Is.True);
     }
@@ -63,7 +63,7 @@ public class EccSdkTests
             Message = "Hello World",
             Order = _keyPair.PublicKey.Curve.Order,
             SessionKey = new BigInteger("1234567890"),
-            Signature = sign
+            Signature = sign.Value
         });
 
         var result = ChameleonHashHelper.Verify(new ChameleonHashRequest
@@ -71,8 +71,8 @@ public class EccSdkTests
             KeyPair = _keyPair,
             Message = "Hello World123",
             Order = _keyPair.PublicKey.Curve.Order,
-            Signature = sign
-        }, chameleonHash);
+            Signature = sign.Value
+        }, chameleonHash.Value);
 
         Assert.That(result, Is.False);
         

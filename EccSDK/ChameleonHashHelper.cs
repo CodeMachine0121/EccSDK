@@ -9,27 +9,44 @@ public static class ChameleonHashHelper
     // Kn = public key
     // kn = private key
     
-    public static BigInteger Sign(ChameleonHashRequest request)
+    public static ChameleonSignature Sign(ChameleonHashRequest request)
     {
         // sign = (sessionKey - dn) mod n
         // dn = H(m) * kn
         var msgHash = HashHelper.Sha256(request.Message);
         var dn = msgHash.Multiply(request.KeyPair.PrivateKey);
-        return request.SessionKey.Add(dn).Mod(request.Order);
+        return new ChameleonSignature()
+        {
+            Value = request.SessionKey.Add(dn).Mod(request.Order)
+        };
     }
     
     public static bool Verify(ChameleonHashRequest request, ECPoint rightChameleonHash)
     {
-        return GetChameleonHash(request).Equals(rightChameleonHash);
+        var chameleohHash = GetChameleonHash(request);
+        return chameleohHash.Value.Equals(rightChameleonHash);
     }
 
-    public static ECPoint GetChameleonHash(ChameleonHashRequest request)
+    public static ChameleonHash GetChameleonHash(ChameleonHashRequest request)
     {
         // chameleonHash = [Kn x H(m)] + [P x sessionKey]
         var msgHash = HashHelper.Sha256(request.Message);
         var rP = request.KeyPair.BasePoint.Multiply(request.Signature);
-        var chameleonHash = request.KeyPair.PublicKey.Multiply(msgHash).Add(rP).Normalize();
-        return chameleonHash;
+
+        return new ChameleonHash()
+        {
+            Value = request.KeyPair.PublicKey.Multiply(msgHash).Add(rP).Normalize() 
+        };
     }
 
+}
+
+public class ChameleonHash
+{
+    public ECPoint Value { get; set; }
+}
+
+public class ChameleonSignature
+{
+    public BigInteger Value { get; set; }
 }
