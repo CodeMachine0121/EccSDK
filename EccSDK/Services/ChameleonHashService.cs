@@ -9,14 +9,14 @@ namespace EccSDK.Services;
 public class ChameleonHashService : IChameleonHashService
 {
     private readonly KeyPairDomain _keyPairDomain;
-    public readonly ChameleonHash _chameleonHash;
+    private readonly ChameleonHash _chameleonHash;
 
     // Kn = public key
     // kn = private key
     public ChameleonHashService(KeyPairDomain keyPairDomain)
     {
         _keyPairDomain = keyPairDomain;
-        _chameleonHash = GetChameleonHash(keyPairDomain);
+        _chameleonHash = InitChameleonHash(keyPairDomain);
     }
 
 
@@ -45,12 +45,12 @@ public class ChameleonHashService : IChameleonHashService
             Signature = new BigInteger(verifyRequest.StrSignature, 16) 
         };
         
-        var chameleonHashCalculated = GetChameleonHashBy(chameleonHashRequest);
+        var chameleonHashCalculated = CalculateChameleonHashBy(chameleonHashRequest);
         
         return chameleonHashCalculated.Value.Equals(_chameleonHash.Value);
     }
 
-    public ChameleonHash GetChameleonHashBy(ChameleonHashRequest request)
+    public ChameleonHash CalculateChameleonHashBy(ChameleonHashRequest request)
     {
         // chameleonHash = [Kn x H(m)] + [P x signature] 
         var hashedMessage = HashHelper.Sha256(request.Message);
@@ -63,14 +63,21 @@ public class ChameleonHashService : IChameleonHashService
         };
     }
     
-    private ChameleonHash GetChameleonHash(KeyPairDomain keyPairDomain)
+    public ChameleonHash GetChameleonHash()
+    {
+        return _chameleonHash;
+    }
+    
+    private ChameleonHash InitChameleonHash(KeyPairDomain keyPairDomain)
     {
         var signature = Sign("init chameleon hash");
-        return GetChameleonHashBy(new ChameleonHashRequest()
+        return CalculateChameleonHashBy(new ChameleonHashRequest()
         {
             Message = "init chameleon hash",
             KeyPairDomain = keyPairDomain,
             Signature = new BigInteger(signature.Value, 16) 
         });
     }
+    
+    
 }
