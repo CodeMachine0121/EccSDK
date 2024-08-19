@@ -9,7 +9,7 @@ namespace EccSDK.Services;
 public class ChameleonHashService : IChameleonHashService
 {
     private readonly KeyPairDomain _keyPairDomain;
-    private readonly ChameleonHash _chameleonHash;
+    public readonly ChameleonHash _chameleonHash;
 
     // Kn = public key
     // kn = private key
