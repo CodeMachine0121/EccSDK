@@ -1,5 +1,6 @@
 using EccSDK.models;
-using Org.BouncyCastle.Math;
+using EccSDK.models.ChameleonHash;
+using EccSDK.Models.ChameleonHash;
 using Org.BouncyCastle.Math.EC;
 
 namespace EccSDK;
@@ -13,12 +14,13 @@ public static class ChameleonHashHelper
     {
         // sign = (sessionKey - dn) mod n
         // dn = H(m) * kn
-        var msgHash = HashHelper.Sha256(request.Message);
-        var dn = msgHash.Multiply(request.KeyPair.PrivateKey);
-        return new ChameleonSignature()
-        {
-            Value = request.SessionKey.Add(dn).Mod(request.Order)
-        };
+        // var msgHash = HashHelper.Sha256(request.Message);
+        // var dn = msgHash.Multiply(new BigInteger(request.KeyPairDomain.PrivateKey));
+        // return new ChameleonSignature()
+        // {
+        //     Value = request.SessionKey.Add(dn).Mod(request.Order)
+        // };
+        return new ChameleonSignature();
     }
     
     public static bool Verify(ChameleonHashRequest request, ECPoint rightChameleonHash)
@@ -29,24 +31,8 @@ public static class ChameleonHashHelper
 
     public static ChameleonHash GetChameleonHash(ChameleonHashRequest request)
     {
-        // chameleonHash = [Kn x H(m)] + [P x sessionKey]
-        var msgHash = HashHelper.Sha256(request.Message);
-        var rP = request.KeyPair.BasePoint.Multiply(request.Signature);
-
-        return new ChameleonHash()
-        {
-            Value = request.KeyPair.PublicKey.Multiply(msgHash).Add(rP).Normalize() 
-        };
+        
+        return new ChameleonHash();
     }
 
-}
-
-public class ChameleonHash
-{
-    public ECPoint Value { get; set; }
-}
-
-public class ChameleonSignature
-{
-    public BigInteger Value { get; set; }
 }
