@@ -4,5 +4,5 @@ namespace EccSDK.models.ChameleonHash;
 
 public class ChameleonSignature
 {
-    public BigInteger Value { get; set; }
+    public string Value { get; set; }
 }

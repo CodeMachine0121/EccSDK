@@ -3,9 +3,9 @@ using Org.BouncyCastle.Math;
 
 namespace EccSDK.Models.ChameleonHash;
 
-public class ChameleonHashRequest
+public class ChameleonHashVerifyRequest
 {
-    public string Message { get; set; }
     public KeyPairDomain KeyPairDomain { get; set; }
-    public BigInteger Signature { get; set; }
+    public string Message { get; set; }
+    public string StrSignature { get; set; }
 }
