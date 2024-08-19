@@ -8,6 +8,5 @@ public interface IChameleonHashService
 {
     ChameleonSignature Sign(string message);
     bool Verify(ChameleonHashVerifyRequest verifyRequest);
-    ChameleonHash CalculateChameleonHashBy(ChameleonHashRequest request);
-    ChameleonHash GetChameleonHash();
+    ChameleonHash GetChameleonHash(string message);
 }

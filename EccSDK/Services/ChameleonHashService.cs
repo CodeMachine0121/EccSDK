@@ -8,17 +8,16 @@ namespace EccSDK.Services;
 
 public class ChameleonHashService : IChameleonHashService
 {
-    private readonly KeyPairDomain _keyPairDomain;
     private readonly ChameleonHash _chameleonHash;
+    private readonly KeyPairDomain _keyPairDomain;
 
     // Kn = public key
     // kn = private key
     public ChameleonHashService(KeyPairDomain keyPairDomain)
     {
         _keyPairDomain = keyPairDomain;
-        _chameleonHash = InitChameleonHash(keyPairDomain);
+        _chameleonHash = GetChameleonHash ("init chameleon hash");
     }
-
 
 
     public ChameleonSignature Sign(string message)
@@ -38,46 +37,40 @@ public class ChameleonHashService : IChameleonHashService
 
     public bool Verify(ChameleonHashVerifyRequest verifyRequest)
     {
-        var chameleonHashRequest = new ChameleonHashRequest()
+        var chameleonHashRequest = new ChameleonHashRequest
         {
             Message = verifyRequest.Message,
             KeyPairDomain = verifyRequest.KeyPairDomain,
-            Signature = new BigInteger(verifyRequest.StrSignature, 16) 
+            Signature = new BigInteger(verifyRequest.StrSignature, 16)
         };
-        
+
         var chameleonHashCalculated = CalculateChameleonHashBy(chameleonHashRequest);
-        
+
         return chameleonHashCalculated.Value.Equals(_chameleonHash.Value);
     }
 
-    public ChameleonHash CalculateChameleonHashBy(ChameleonHashRequest request)
+    public ChameleonHash GetChameleonHash(string message)
+    {
+        var signature = Sign(message);
+        return CalculateChameleonHashBy(new ChameleonHashRequest
+        {
+            Message = message,
+            KeyPairDomain = _keyPairDomain,
+            Signature = new BigInteger(signature.Value, 16)
+        });
+    }
+    
+    private ChameleonHash CalculateChameleonHashBy(ChameleonHashRequest request)
     {
         // chameleonHash = [Kn x H(m)] + [P x signature] 
         var hashedMessage = HashHelper.Sha256(request.Message);
         var knHash = request.KeyPairDomain.PublicKey.Q.Multiply(hashedMessage);
-        var pSignature =request.KeyPairDomain.PublicKey.Parameters.G.Multiply(request.Signature);
+        var pSignature = request.KeyPairDomain.PublicKey.Parameters.G.Multiply(request.Signature);
 
-        return new ChameleonHash()
+        return new ChameleonHash
         {
             Value = knHash.Add(pSignature)
         };
     }
-    
-    public ChameleonHash GetChameleonHash()
-    {
-        return _chameleonHash;
-    }
-    
-    private ChameleonHash InitChameleonHash(KeyPairDomain keyPairDomain)
-    {
-        var signature = Sign("init chameleon hash");
-        return CalculateChameleonHashBy(new ChameleonHashRequest()
-        {
-            Message = "init chameleon hash",
-            KeyPairDomain = keyPairDomain,
-            Signature = new BigInteger(signature.Value, 16) 
-        });
-    }
-    
-    
+
 }
