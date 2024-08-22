@@ -27,7 +27,7 @@ public class ChameleonHashService : IChameleonHashService
         var msgHash = HashHelper.Sha256(message);
         var dn = msgHash.Multiply(_keyPairDomain.PrivateKey.D);
 
-        var signature = _keyPairDomain.SessionKey.Add(dn).Mod(_keyPairDomain.PublicKey.Parameters.N);
+        var signature = _keyPairDomain.SessionKey.Subtract(dn).Mod(_keyPairDomain.PublicKey.Parameters.N);
 
         return new ChameleonSignature
         {
